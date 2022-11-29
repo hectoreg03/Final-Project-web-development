@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Places from './components/Places';
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Reservation from './components/Reservation';
 
 
 class App {
