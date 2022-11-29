@@ -54,63 +54,66 @@ class Home extends Component{
     render(){
         return (
             <div>
-            <nav class="navbar2 navbar-expand-lg">
-            <h4 align="center"><b> Top most sought after destinations today in Mexico</b></h4>
-            <div class="container" id ="galeriam1">
-                <div class="row">
-                <div class="col-sm imgcont">
-                    <img class="d-block imggal" src="/imagenes/barcelona.jpg"  alt="imagen1" />
-                    <div class="middle">
-                    <div class="texto-galeria">Barcelona</div>
-                    </div>
-                </div>
-                <div class="col-sm imgcont">
-                    <img class="d-block imggal" src="/imagenes/cancun.jpg"  alt="imagen1" />
-                    <div class="middle">
-                    <div class="texto-galeria"> Cancún</div>
-                    </div>
-                </div>
-                <div class="col-sm imgcont">
-                    <img class="d-block imggal" src="/imagenes/dubai.jpg"  alt="imagen1" />
-                    <div class="middle">
-                    <div class="texto-galeria">Dubai </div>
-                    </div>
-                </div>
-                <div class="col-sm imgcont">
-                    <img class="d-block imggal" src="/imagenes/newyork.jpg"  alt="imagen1" />
-                    <div class="middle">
-                    <div class="texto-galeria">New York </div>
-                    </div>
-                </div>
-                <div class="col-sm imgcont">
-                    <img class="d-block imggal" src="/imagenes/paris.jpg"  alt="imagen1" />
-                    <div class="middle">
-                    <div class="texto-galeria">Paris </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </nav>
+            
+        <br></br><br></br>
+  
+  <nav className="navbar2 navbar-expand-lg">
+  <h4 align="center"><b> Top most sought after destinations today in Mexico</b></h4>
+  <div className="container" id ="galeriam1">
+    <div className="row">
+      <div className="col-sm imgcont">
+        <img className="d-block imggal" src="/imagenes/barcelona.jpg"  alt="imagen1" />
+        <div className="middle">
+          <div className="texto-galeria">Barcelona</div>
+        </div>
+      </div>
+      <div className="col-sm imgcont">
+        <img className="d-block imggal" src="/imagenes/cancun.jpg"  alt="imagen1" />
+        <div className="middle">
+          <div className="texto-galeria"> Cancún</div>
+        </div>
+      </div>
+      <div className="col-sm imgcont">
+        <img className="d-block imggal" src="/imagenes/dubai.jpg"  alt="imagen1" />
+        <div className="middle">
+          <div className="texto-galeria">Dubai </div>
+        </div>
+      </div>
+      <div className="col-sm imgcont">
+        <img className="d-block imggal" src="/imagenes/newyork.jpg"  alt="imagen1" />
+        <div className="middle">
+          <div className="texto-galeria">New York </div>
+        </div>
+      </div>
+      <div className="col-sm imgcont">
+        <img className="d-block imggal" src="/imagenes/paris.jpg"  alt="imagen1" />
+        <div className="middle">
+          <div className="texto-galeria">Paris </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </nav>
+  
 
+<div className="noticia2">
+  <h5> <b> Country Search: </b></h5>
 
-            <div class="noticia2">
-            <h5> <b> Country Search: </b></h5>
+  <Buscador
+    datosBusqueda={this.datosBusqueda}
+  />
+  </div>
+  <div className='row justify-content-center'>
+      <Resultado
+        imagenes = {this.state.imagenes}
+        paginaAnterior = {this.paginaAnterior}
+        paginaSiguiente = {this.paginaSiguiente}
+      />
+  </div>
 
-            <Buscador
-                datosBusqueda={this.datosBusqueda}
-            />
-            </div>
-            <div className='row justify-content-center'>
-                <Resultado
-                    imagenes = {this.state.imagenes}
-                    paginaAnterior = {this.paginaAnterior}
-                    paginaSiguiente = {this.paginaSiguiente}
-                />
-            </div>
-
-            <nav class="navbar navbar-expand-lg">
-                <br></br>
-            </nav>
+  <nav className="navbar navbar-expand-lg">
+    <br></br>
+  </nav>
             </div>
         );
     } 
