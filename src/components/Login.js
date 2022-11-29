@@ -1,39 +1,79 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from "axios";
 
+function Login(props) {
+  var [registerInfo, setRegisterInfo] = useState({ 
+    userName: "", 
+    password: "",
+    name: "",
+    lname: "",
+  });
+  var [errorMsg, setErrorMsg] = useState("");
+  function handleUpdate(e) { 
+    const { value, name } = e.target; 
+    setRegisterInfo((prevValue)=>{
+      if (name === "Username") {
+        return { 
+          ...prevValue,
+          userName: value, 
+        };
+      } else {
+        return {  
+          ...prevValue,
+          password: value, 
+        };
+      }
+    });
+  }
+  function processLogin(e/*userName*/) { //the 'e' represents the event of the clic
+    e.preventDefault();
+    var userName = registerInfo.userName;
+    var userPass = registerInfo.password;
+    axios
+      .post("http://localhost:4000/api/users",{ user: userName, pass: userPass }) //Im here creating a form, for the security
+      .then((res) => {
+        var data = res.data; 
+        console.log(data);
+        if(!data.hasOwnProperty("error")) {
+          console.log("Success");
+          registerInfo.name = data.name;
+          registerInfo.lname = data.lname;
+          props.handler(registerInfo);
+        } else {
+          setErrorMsg(data.message);
+        }
+      }).catch(err => {
+        console.error(err.error);
+      });
+  }
+  return (
+      <form>
+          <input
+            name = "Username"
+            type="text"
+            placeholder="Username" 
+            // onChange={recordUsername}
+            onChange={handleUpdate}
+          />
+          <input 
+            name = "Password"
+            type="password"
+            placeholder="Password" 
+            // onChange={recordPassword}
+            onChange={handleUpdate}
+          />
+          <button 
+            type="submit" 
+            // onClick={props.handler}
+            onClick={processLogin}
+          >
+            Log In
+          </button>
+          <center><Link className="btn btn-outline-secondary boton-forms" to="/register" id="buscar3" >Dont have an account</Link></center>
+          {errorMsg}
+      </form>
+  );
+}
 
-const User = ()=>{
-
-
-    return(
-        <div>
-
-        <br></br>
-
-        <div className ="noticia2">
-            <h5> <b> See your previous Reservations</b></h5>
-            <aside>
-                <hr size="4%"/>
-                <div>
-                    <form action ="/reservation"  id="reservas">
-                        <div classNameName="from-group">
-                            <h4> Username:</h4>
-                            <input type="text" id="fName" name="usName"  className="form-control"/>
-                            <h4> Password:</h4>
-                            <input type="password" id="fName" name="usName"  className="form-control"/>
-                            <br></br>
-                            <center><button className="btn btn-outline-secondary boton-forms" type="submit" id="buscar3" >Login</button></center>
-                            <br></br>
-                            <center><Link className="btn btn-outline-secondary boton-forms" to="/register" id="buscar3" >Dont have an account</Link></center>
-                        </div>
-                        <br></br>
-                    </form>
-                </div>
-            </aside>
-        </div>
-
-        </div>
-    )
-};
-
-export default User;
+export default Login;

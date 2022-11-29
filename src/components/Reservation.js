@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 
 const Reservation = ()=>{
-
+    const handleSubmit = evt =>{
+        evt.preventDefault();
+        
+        console.log('submit')
+    }
 
     return(
         <div>
@@ -15,7 +19,7 @@ const Reservation = ()=>{
             <aside>
                 <hr size="4%"/>
                 <div>
-                    <form action ="/reservation"  id="reservas">
+                    <form   id="reservas" onSubmit={handleSubmit}>
                         <div classNameName="from-group">
                             <h4> Username:</h4>
                             <input type="text" id="fName" name="usName"  className="form-control"/>
